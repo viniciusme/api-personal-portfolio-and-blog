@@ -30,8 +30,16 @@ export class PostController {
   }
 
   @Put(':id')
-  editOne(@Param('id') id: string) {}
+  editOne(@Param('id') id: string) {
+    return {
+      message: 'Post com ID alterado com sucesso!',
+    };
+  }
 
   @Delete(':id')
-  deleteOne(@Param('id') id: string) {}
+  deleteOne(@Param('id') id: string) {
+    return {
+      message: 'Post com ID deletado com sucesso!',
+    };
+  }
 }
