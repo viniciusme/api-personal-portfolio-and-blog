@@ -7,6 +7,7 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { CreatePostDto } from './dtos';
 
 @Controller('posts')
 export class PostController {
@@ -25,8 +26,8 @@ export class PostController {
   }
 
   @Post()
-  createOne(@Body('title') title: any) {
-    console.log(title);
+  createOne(@Body() dto: CreatePostDto) {
+    return dto;
   }
 
   @Put(':id')
