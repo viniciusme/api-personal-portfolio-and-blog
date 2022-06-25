@@ -4,10 +4,11 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
 } from '@nestjs/common';
-import { CreatePostDto } from './dtos';
+import { CreatePostDto, EditPostDto } from './dtos/index';
 
 @Controller('posts')
 export class PostController {
@@ -19,7 +20,8 @@ export class PostController {
   }
 
   @Get(':id')
-  getOne(@Param('id') id: string) {
+  getOne(@Param('id', ParseIntPipe) id: number) {
+    console.log(typeof id);
     return {
       message: 'getOne',
     };
@@ -31,7 +33,7 @@ export class PostController {
   }
 
   @Put(':id')
-  editOne(@Param('id') id: string) {
+  editOne(@Param('id') id: string, @Body() dto: EditPostDto) {
     return {
       message: 'Post com ID alterado com sucesso!',
     };

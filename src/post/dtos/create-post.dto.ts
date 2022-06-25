@@ -1,4 +1,11 @@
-import { IsArray, IsBoolean, IsNotEmpty, IsString } from 'class-validator';
+import { EnumToString } from './../../helpers/enumToString';
+import {
+  IsArray,
+  IsBoolean,
+  IsEnum,
+  IsNotEmpty,
+  IsString,
+} from 'class-validator';
 import { PostCategory } from '../enums';
 
 export class CreatePostDto {
@@ -18,8 +25,11 @@ export class CreatePostDto {
   @IsNotEmpty()
   'excerpt': string; // É utilizado para fazer a descrição do conteúdo do Post
 
-  @IsString()
-  @IsNotEmpty()
+  @IsEnum(PostCategory, {
+    message: `Opção inválida. As opções válidas são '${EnumToString(
+      PostCategory,
+    )}'`,
+  })
   'category': PostCategory; // É utilizado para criar diferentes áreas de um Blog ou conteúdo, organizando assuntos em suas devidas categorias
 
   @IsArray()

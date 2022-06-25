@@ -1,5 +1,11 @@
 export enum PostCategory {
-  'TECHNOLOGY',
-  'LIFESTYLE',
-  'CODING',
+  'TECNOLOGIA',
+  'MODA',
+  'RECEITAS',
+  'VIAGEM',
+  'MÚSICA',
+  'ESTILO DE VIDA',
+  'FITNESS',
+  'NOTÍCIAS',
+  'JOGOS',
 }
