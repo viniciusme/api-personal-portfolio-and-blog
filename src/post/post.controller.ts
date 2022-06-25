@@ -27,12 +27,12 @@ export class PostController {
 
   @Post()
   createOne(@Body() dto: CreatePostDto) {
-    return this.postService.createOne();
+    return this.postService.createOne(dto);
   }
 
   @Put(':id')
   editOne(@Param('id') id: number, @Body() dto: EditPostDto) {
-    return this.postService.editOne(id);
+    return this.postService.editOne(id, dto);
   }
 
   @Delete(':id')
