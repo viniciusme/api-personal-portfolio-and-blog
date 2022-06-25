@@ -8,16 +8,23 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CreatePostDto, EditPostDto } from './dtos';
 import { PostService } from './post.service';
 
+@ApiTags('Posts')
 @Controller('posts')
 export class PostController {
   constructor(private readonly postService: PostService) {}
 
   @Get()
-  getMany() {
-    return this.postService.getMany();
+  async getMany() {
+    const data = await this.postService.getMany();
+
+    return {
+      message: 'Solicitação realizada com sucesso!',
+      data,
+    };
   }
 
   @Get(':id')
