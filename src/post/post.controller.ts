@@ -8,41 +8,35 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { CreatePostDto, EditPostDto } from './dtos/index';
+import { CreatePostDto, EditPostDto } from './dtos';
+import { PostService } from './post.service';
 
 @Controller('posts')
 export class PostController {
+  constructor(private readonly postService: PostService) {}
+
   @Get()
   getMany() {
-    return {
-      message: 'Rota funcionando!',
-    };
+    return this.postService.getMany();
   }
 
   @Get(':id')
   getOne(@Param('id', ParseIntPipe) id: number) {
-    console.log(typeof id);
-    return {
-      message: 'getOne',
-    };
+    return this.postService.getOne(id);
   }
 
   @Post()
   createOne(@Body() dto: CreatePostDto) {
-    return dto;
+    return this.postService.createOne();
   }
 
   @Put(':id')
-  editOne(@Param('id') id: string, @Body() dto: EditPostDto) {
-    return {
-      message: 'Post com ID alterado com sucesso!',
-    };
+  editOne(@Param('id') id: number, @Body() dto: EditPostDto) {
+    return this.postService.editOne(id);
   }
 
   @Delete(':id')
-  deleteOne(@Param('id') id: string) {
-    return {
-      message: 'Post com ID deletado com sucesso!',
-    };
+  deleteOne(@Param('id') id: number) {
+    return this.postService.deleteOne(id);
   }
 }
