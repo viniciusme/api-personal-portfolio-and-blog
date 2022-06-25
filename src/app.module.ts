@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PostModule } from './post/post.module';
@@ -9,11 +10,12 @@ import { PostModule } from './post/post.module';
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
-      port: 3306,
-      username: 'myblog_user',
-      password: 'myblog_password',
+      port: 3307,
+      username: 'root',
+      password: 'root',
       database: 'portfolio_and_blog',
-      entities: [__dirname + './**/**/*entity{.ts,.js'],
+      entities: [__dirname + './**/**/*entity{.ts, .js}'],
+      autoLoadEntities: true,
       synchronize: true,
     }),
     PostModule,
