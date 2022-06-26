@@ -11,5 +11,5 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: portfolio_and_blog
-      MYSQL_USER: myblog_user
-      MYSQL_PASSWORD: myblog_password
+      MYSQL_USER: vinimendes
+      MYSQL_PASSWORD: D1squ3t3
