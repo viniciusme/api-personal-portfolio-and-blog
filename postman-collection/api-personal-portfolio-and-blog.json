@@ -47,7 +47,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/post/3",
+					"raw": "http://localhost:3000/post/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -55,7 +55,7 @@
 					"port": "3000",
 					"path": [
 						"post",
-						"3"
+						"1"
 					]
 				}
 			},
@@ -74,7 +74,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"API Personal Portfolio e Blog\",\r\n    \"content\": \"Este é minha primeira API Nestjs desenvovlida para meu blog.\",\r\n    \"slug\": \"api-personal-portfolio-e-blog\",\r\n    \"excerpt\": \"Este é um post referente a ao meu primeiro projeto desenvolvido em Nestjs, \",\r\n    \"category\": \"TECNOLOGIA\",\r\n    \"tags\": [\"Nestjs\", \"TypeORM\", \"MySQL\", \"Swagger\", \"JWT\"],\r\n    \"status\": true\r\n}",
+					"raw": "{\r\n    \"title\": \"This is my first post\",\r\n    \"content\": \"Este é meu primeiro backend de um blog desenvolvido com nestJs.\",\r\n    \"slug\": \"this-is-my-first-post\",\r\n    \"excerpt\": \"aasdadsdadsadasdasdasd\",\r\n    \"category\": \"TECNOLOGIA\",\r\n    \"tags\": [\"ssaasapoijewf\", \"1231\"],\r\n    \"status\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -110,7 +110,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/post/3",
+					"raw": "http://localhost:3000/post/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -118,7 +118,7 @@
 					"port": "3000",
 					"path": [
 						"post",
-						"3"
+						"1"
 					]
 				}
 			},
@@ -169,7 +169,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/user/4",
+					"raw": "http://localhost:3000/user/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -177,7 +177,7 @@
 					"port": "3000",
 					"path": [
 						"user",
-						"4"
+						"1"
 					]
 				}
 			},
@@ -209,7 +209,7 @@
 						},
 						{
 							"key": "email",
-							"value": "teste1@vinimendes.com.br",
+							"value": "vini@vinimendes.com.br",
 							"type": "text"
 						},
 						{
@@ -255,7 +255,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3000/user/4",
+					"raw": "http://localhost:3000/user/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -263,7 +263,7 @@
 					"port": "3000",
 					"path": [
 						"user",
-						"4"
+						"1"
 					]
 				}
 			},
@@ -291,7 +291,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3000/user/7",
+					"raw": "http://localhost:3000/user/10",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -299,7 +299,7 @@
 					"port": "3000",
 					"path": [
 						"user",
-						"7"
+						"10"
 					]
 				}
 			},
