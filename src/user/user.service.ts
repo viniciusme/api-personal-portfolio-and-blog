@@ -6,7 +6,12 @@ import {
 } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { CreateUserDto, EditUserDto } from '../user/dtos';
-import { User } from './entities/user.entity';
+import { User } from './entities';
+
+export interface UserFindOne {
+  id?: number;
+  email?: string;
+}
 
 @Injectable()
 export class UserService {
@@ -61,5 +66,13 @@ export class UserService {
     const user = await this.getOne(id);
 
     return await this.userRepository.remove(user);
+  }
+
+  async findOne(data: UserFindOne) {
+    return await this.userRepository
+      .createQueryBuilder('user')
+      .where(data)
+      .addSelect('user.password')
+      .getOne();
   }
 }
