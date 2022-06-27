@@ -1,12 +1,11 @@
-import { IsEmail } from 'class-validator';
-import { CreateUserDto } from './dtos/create-user.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 import {
   BadRequestException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { CreateUserDto, EditUserDto } from '../user/dtos';
 import { User } from './entities/user.entity';
 
 @Injectable()
@@ -44,7 +43,23 @@ export class UserService {
     return user;
   }
 
-  async editOne() {}
+  async editOne(id: number, dto: EditUserDto) {
+    // const user = await this.userRepository.findOne({ where: { id } });
+    // if (!user) throw new NotFoundException('Usuário não existe.'); //Este código foi refatorado, novo código está na primeira linha logo abaixo
+    const user = await this.getOne(id);
 
-  async deleteOne() {}
+    const editedUser = Object.assign(user, dto);
+
+    const newEditedUser = await this.userRepository.save(editedUser);
+
+    delete newEditedUser.password;
+
+    return newEditedUser;
+  }
+
+  async deleteOne(id: number) {
+    const user = await this.getOne(id);
+
+    return await this.userRepository.remove(user);
+  }
 }
