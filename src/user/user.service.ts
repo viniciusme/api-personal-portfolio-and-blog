@@ -1,5 +1,10 @@
+import { IsEmail } from 'class-validator';
 import { CreateUserDto } from './dtos/create-user.dto';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
@@ -24,9 +29,19 @@ export class UserService {
   }
 
   async createOne(dto: CreateUserDto) {
-    const newUser = this.userRepository.create(dto);
+    const userExist = await this.userRepository.findOne({
+      where: { email: dto.email },
+    });
 
-    return await this.userRepository.save(newUser);
+    if (userExist)
+      throw new BadRequestException('Usuário já cadastrado com esse e-mail');
+
+    const newUser = this.userRepository.create(dto);
+    const user = await this.userRepository.save(newUser);
+
+    delete user.password;
+
+    return user;
   }
 
   async editOne() {}

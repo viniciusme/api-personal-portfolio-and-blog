@@ -31,13 +31,13 @@ export class User {
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   createdAt: Date;
 
-  //   @BeforeInsert()
-  //   @BeforeUpdate()
-  //   async hashPassword() {
-  //     if (!this.password) {
-  //       return;
-  //     }
+  @BeforeInsert()
+  @BeforeUpdate()
+  async hashPassword() {
+    if (!this.password) {
+      return;
+    }
 
-  //     this.password = await hash(this.password, 10);
-  //   }
+    this.password = await hash(this.password, 10);
+  }
 }
