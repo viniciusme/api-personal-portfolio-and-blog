@@ -13,6 +13,7 @@ import {
   DATABASE_PASSWORD,
   DATABASE_NAME,
 } from './config/constants';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import {
     }),
     PostModule,
     UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
