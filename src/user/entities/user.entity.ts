@@ -25,6 +25,9 @@ export class User {
   @Column({ type: 'varchar', length: 128, nullable: false, select: false })
   password: string;
 
+  @Column({ type: 'simple-array' })
+  roles: string[];
+
   @Column({ type: 'bool', default: true })
   status: boolean;
 
