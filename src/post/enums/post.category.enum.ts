@@ -1,5 +1,5 @@
 export enum PostCategory {
-  'TECNOLOGIA',
+  'TECNOLMODAOGIA',
   'MODA',
   'RECEITAS',
   'VIAGEM',

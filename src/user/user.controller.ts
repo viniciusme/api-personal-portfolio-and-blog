@@ -7,9 +7,12 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
 import { CreateUserDto, EditUserDto } from '../user/dtos/index';
+import { Auth } from 'src/common/decorators';
 
+@ApiTags('Users Routes')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
@@ -34,6 +37,7 @@ export class UserController {
     };
   }
 
+  @Auth()
   @Post()
   async createOne(@Body() dto: CreateUserDto) {
     const data = await this.userService.createOne(dto);
@@ -44,6 +48,7 @@ export class UserController {
     };
   }
 
+  @Auth()
   @Put(':id')
   async editOne(@Param('id') id: number, @Body() dto: EditUserDto) {
     const data = await this.userService.editOne(id, dto);
@@ -54,6 +59,7 @@ export class UserController {
     };
   }
 
+  @Auth()
   @Delete(':id')
   async deleteOne(@Param('id') id: number) {
     const data = await this.userService.deleteOne(id);
