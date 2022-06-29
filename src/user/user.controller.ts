@@ -10,12 +10,19 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
 import { CreateUserDto, EditUserDto } from '../user/dtos/index';
-import { Auth } from 'src/common/decorators';
+import { Auth, User } from 'src/common/decorators';
+import { InjectRolesBuilder, RolesBuilder } from 'nest-access-control';
+import { AppResource } from 'src/app.roles';
+import { User as UserEntity } from './entities';
 
 @ApiTags('Users Routes')
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    @InjectRolesBuilder()
+    private readonly rolesBuilder: RolesBuilder,
+  ) {}
 
   @Get()
   async getMany() {
@@ -37,7 +44,11 @@ export class UserController {
     };
   }
 
-  @Auth()
+  @Auth({
+    possession: 'any',
+    action: 'create',
+    resource: AppResource.USER,
+  })
   @Post()
   async createOne(@Body() dto: CreateUserDto) {
     const data = await this.userService.createOne(dto);
@@ -50,7 +61,12 @@ export class UserController {
 
   @Auth()
   @Put(':id')
-  async editOne(@Param('id') id: number, @Body() dto: EditUserDto) {
+  async editOne(
+    @Param('id') id: number,
+    @Body() dto: EditUserDto,
+    @User() user: UserEntity,
+  ) {
+    console.log(user);
     const data = await this.userService.editOne(id, dto);
 
     return {
