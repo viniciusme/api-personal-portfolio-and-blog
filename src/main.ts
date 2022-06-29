@@ -13,7 +13,7 @@ async function bootstrap() {
   const port = parseInt(config.get<string>(SERVER_PORT), 10) || 3000;
 
   initSwagger(app);
-  setDefaultUser(config);
+  // setDefaultUser(config);
 
   app.useGlobalPipes(
     new ValidationPipe({

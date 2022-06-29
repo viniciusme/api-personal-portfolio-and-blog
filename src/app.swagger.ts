@@ -8,7 +8,7 @@ export const initSwagger = (app: INestApplication) => {
     .setTitle(`${name}`)
     .addBearerAuth()
     .setDescription(
-      'A Tecnologia da Informação (ou, em inglês, Information Technology — IT) pode ser definida como o conjunto de todas as atividades e soluções providas por recursos computacionais que visam permitir a obtenção, o armazenamento, a proteção, o processamento, o acesso, o gerenciamento e o uso das informações.\n\n😍 API com NestJS + TypeORM + MYSQL + Swagger + class-validator + passportjs + bcryptjs + nest-acess-control + JWT desenvolvida para meu portfólio pessoal e blog.',
+      'A Tecnologia da Informação (ou, em inglês, Information Technology — IT) pode ser definida como o conjunto de todas as atividades e soluções providas por recursos computacionais que visam permitir a obtenção, o armazenamento, a proteção, o processamento, o acesso, o gerenciamento e o uso das informações. Este projeto é uma API desenvolvida para meu portfólio pessoal e blog, com foco no estudo acadêmico.\n\n 😍 API com NestJS + TypeORM + Mysql + Swagger + Class-validator + Passportjs + Bcryptjs + Nest-acess-control + JWT, Docker, Docker Compose.',
     )
     .setVersion(`${version}`)
     .build();

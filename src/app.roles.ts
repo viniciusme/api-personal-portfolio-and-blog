@@ -1,5 +1,4 @@
 import { RolesBuilder } from 'nest-access-control';
-
 // Tipos de Usuários que temos em nosso app
 export enum AppRoles {
   AUTHOR = 'AUTHOR',
@@ -11,7 +10,6 @@ export enum AppResource {
   USER = 'USER',
   POST = 'POST',
 }
-
 export const roles: RolesBuilder = new RolesBuilder();
 
 roles
