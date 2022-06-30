@@ -24,10 +24,15 @@ export class UserService {
     return await this.userRepository.find();
   }
 
-  async getOne(id: number) {
-    const user = await this.userRepository.findOne({ where: { id } });
+  async getOne(id: number, userEntity?: User) {
+    const user = await this.userRepository
+      .findOne({ where: { id } })
+      .then((u) =>
+        !userEntity ? u : !!u && userEntity.id === u.id ? u : null,
+      );
 
-    if (!user) throw new NotFoundException('Usuário não existe.');
+    if (!user)
+      throw new NotFoundException('User does not exists or unauthorized');
 
     return user;
   }
@@ -48,23 +53,20 @@ export class UserService {
     return user;
   }
 
-  async editOne(id: number, dto: EditUserDto) {
-    // const user = await this.userRepository.findOne({ where: { id } });
-    // if (!user) throw new NotFoundException('Usuário não existe.'); //Este código foi refatorado, novo código está na primeira linha logo abaixo
-    const user = await this.getOne(id);
-
+  async editOne(id: number, dto: EditUserDto, userEntity?: User) {
+    console.log(dto);
+    const user = await this.getOne(id, userEntity);
     const editedUser = Object.assign(user, dto);
 
+    // Aqui estamos removendo a senha para que ela não seja enviado no return
     const newEditedUser = await this.userRepository.save(editedUser);
-
     delete newEditedUser.password;
 
     return newEditedUser;
   }
 
-  async deleteOne(id: number) {
-    const user = await this.getOne(id);
-
+  async deleteOne(id: number, userEntity?: User) {
+    const user = await this.getOne(id, userEntity);
     return await this.userRepository.remove(user);
   }
 
