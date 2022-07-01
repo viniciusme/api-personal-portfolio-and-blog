@@ -1,3 +1,5 @@
+import { EnumToString } from './../../common/helpers/enumToString';
+import { AppRoles } from './../../app.roles';
 import {
   IsArray,
   IsEmail,
@@ -7,8 +9,6 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
-import { AppRoles } from 'src/app.roles';
-import { EnumToString } from 'src/common/helpers/enumToString';
 
 export class CreateUserDto {
   @IsString()
@@ -42,10 +42,12 @@ export class CreateUserDto {
   })
   password: string;
 
-  @IsArray()
+  @IsArray({
+    message: 'Roles deve ser um Array',
+  })
   @IsEnum(AppRoles, {
     each: true,
-    message: `Opção inválida. As opções válidas para função são ${EnumToString(
+    message: `Roles deve ser um valor válido, e os valores válidos são: ${EnumToString(
       AppRoles,
     )}`,
   })

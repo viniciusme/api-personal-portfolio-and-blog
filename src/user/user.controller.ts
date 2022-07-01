@@ -1,3 +1,4 @@
+import { AppResource, AppRoles } from './../app.roles';
 import {
   Body,
   Controller,
@@ -10,10 +11,8 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
 import { CreateUserDto, EditUserDto, UserRegistrationDto } from './dtos';
-import { AppRoles } from './../app.roles';
 import { Auth, User } from 'src/common/decorators';
-import { InjectRolesBuilder, RolesBuilder } from 'nest-access-control';
-import { AppResource } from 'src/app.roles';
+import { RolesBuilder, InjectRolesBuilder } from 'nest-access-control';
 import { User as UserEntity } from './entities';
 
 @ApiTags('Users Routes')
@@ -35,21 +34,22 @@ export class UserController {
     };
   }
 
-  @Post('register')
+  @Get(':id')
+  async getOne(@Param('id') id: number) {
+    const data = await this.userService.getOne(id);
+
+    return { data };
+  }
+
+  @Post('register') // api/user/register - Rota Publica
   async publicRegistration(@Body() dto: UserRegistrationDto) {
     const data = await this.userService.createOne({
       ...dto,
       roles: [AppRoles.AUTHOR],
     });
-    return { message: 'Usuário registrado com sucesso', data };
-  }
-
-  @Get(':id')
-  async getOne(@Param('id') id: number) {
-    const data = await this.userService.getOne(id);
 
     return {
-      message: 'Usuário encontrado',
+      message: 'Usuário registrado com sucesso',
       data,
     };
   }
@@ -83,13 +83,14 @@ export class UserController {
     let data;
 
     if (this.rolesBuilder.can(user.roles).updateAny(AppResource.USER).granted) {
-      // Este é usuário ADMIN
+      // Se o usuário tem a possession ANY = ADMIN
       data = await this.userService.editOne(id, dto);
     } else {
-      // Este é usuário AUTHOR
+      // Se ele tem a possession OWN = AUTHOR
       const { roles, ...rest } = dto;
       data = await this.userService.editOne(id, rest, user);
     }
+
     return { message: 'Usuário editado com sucesso', data };
   }
 
@@ -103,12 +104,16 @@ export class UserController {
     let data;
 
     if (this.rolesBuilder.can(user.roles).updateAny(AppResource.USER).granted) {
-      // Este é usuário ADMIN
+      // Se o usuário tem a possession ANY = ADMIN
       data = await this.userService.deleteOne(id);
     } else {
-      // Este é usuário AUTHOR
+      // Se ele tem a possession OWN = AUTHOR
       data = await this.userService.deleteOne(id, user);
     }
-    return { message: 'Usuário editado com sucesso', data };
+
+    return {
+      message: 'Usuário deletado com sucesso',
+      data,
+    };
   }
 }

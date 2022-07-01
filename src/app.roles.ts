@@ -1,12 +1,10 @@
 import { RolesBuilder } from 'nest-access-control';
 
-// Tipos de Usuários que temos em nosso app
 export enum AppRoles {
   AUTHOR = 'AUTHOR',
   ADMIN = 'ADMIN',
 }
 
-// Módulos que serão protegido em nosso app.
 export enum AppResource {
   USER = 'USER',
   POST = 'POST',
@@ -15,15 +13,14 @@ export enum AppResource {
 export const roles: RolesBuilder = new RolesBuilder();
 
 roles
-  // Author Roles
+  // AUTHOR ROLES
   .grant(AppRoles.AUTHOR)
   .updateOwn([AppResource.USER])
   .deleteOwn([AppResource.USER])
   .createOwn([AppResource.POST])
   .updateOwn([AppResource.POST])
   .deleteOwn([AppResource.POST])
-
-  // Admin Roles
+  //ADMIN ROLES
   .grant(AppRoles.ADMIN)
   .extend(AppRoles.AUTHOR)
   .createAny([AppResource.USER])

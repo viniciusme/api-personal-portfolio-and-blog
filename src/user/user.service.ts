@@ -32,7 +32,7 @@ export class UserService {
       );
 
     if (!user)
-      throw new NotFoundException('User does not exists or unauthorized');
+      throw new NotFoundException('O usuário não existe ou não autorizado');
 
     return user;
   }
@@ -54,7 +54,6 @@ export class UserService {
   }
 
   async editOne(id: number, dto: EditUserDto, userEntity?: User) {
-    console.log(dto);
     const user = await this.getOne(id, userEntity);
     const editedUser = Object.assign(user, dto);
 

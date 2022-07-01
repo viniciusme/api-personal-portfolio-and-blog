@@ -12,10 +12,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://[::1]:3000",
+					"raw": "http://localhost:3000",
 					"protocol": "http",
 					"host": [
-						"[::1]"
+						"localhost"
 					],
 					"port": "3000"
 				}
@@ -64,6 +64,16 @@
 		{
 			"name": "Create Post",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AdminToken}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -74,7 +84,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"This is my first post\",\r\n    \"content\": \"Este é meu primeiro backend de um blog desenvolvido com nestJs.\",\r\n    \"slug\": \"this-is-my-first-post\",\r\n    \"excerpt\": \"aasdadsdadsadasdasdasd\",\r\n    \"category\": \"TECNOLOGIA\",\r\n    \"tags\": [\"ssaasapoijewf\", \"1231\"],\r\n    \"status\": true\r\n}",
+					"raw": "{\r\n    \"title\": \"Meta Nova Tecnologia\",\r\n    \"content\": \"A Meta está preparando uma nova tecnologia\",\r\n    \"slug\": \"meta-nova-tcnologia\",\r\n    \"excerpt\": \"Tudo faz parte do contexto\",\r\n    \"category\": \"TECNOLMODAOGIA\",\r\n    \"tags\": [\"Meta\", \"metaverso\"],\r\n    \"status\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -98,6 +108,16 @@
 		{
 			"name": "Update Post",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AdminToken}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
@@ -127,10 +147,20 @@
 		{
 			"name": "Delete Post",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AdminToken}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/post/3",
+					"raw": "http://localhost:3000/post/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -138,7 +168,7 @@
 					"port": "3000",
 					"path": [
 						"post",
-						"3"
+						"2"
 					]
 				}
 			},
@@ -166,10 +196,20 @@
 		{
 			"name": "User ID",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/user/1",
+					"raw": "http://localhost:3000/user/10",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -177,14 +217,14 @@
 					"port": "3000",
 					"path": [
 						"user",
-						"1"
+						"10"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Create User",
+			"name": "Register Public",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -195,29 +235,48 @@
 					}
 				],
 				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Tambaqui\",\r\n    \"lastName\": \"Merlusa\",\r\n    \"email\": \"merlusa@vinimendes.com.br\",\r\n    \"password\": \"12345678\",\r\n    \"roles\": [\"ADMIN\"],\r\n    \"status\": true\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "name",
-							"value": "Vinicius",
-							"type": "text"
-						},
-						{
-							"key": "lastName",
-							"value": "Mendes Rodrigues",
-							"type": "text"
-						},
-						{
-							"key": "email",
-							"value": "vini@vinimendes.com.br",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "12345678",
-							"type": "text"
+							"key": "token",
+							"value": "{{AdminToken}}",
+							"type": "string"
 						}
 					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Julia\",\r\n    \"lastName\": \"Lemes\",\r\n    \"email\": \"juju@gmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"roles\": [\"ADMIN\"],\r\n    \"status\": true\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:3000/user",
@@ -236,6 +295,16 @@
 		{
 			"name": "Edit User",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AdminToken}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [
 					{
@@ -245,17 +314,11 @@
 					}
 				],
 				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "password",
-							"value": "87654321",
-							"type": "text"
-						}
-					]
+					"mode": "raw",
+					"raw": "{\r\n    \"lastName\": \"Anita\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/user/1",
+					"raw": "http://localhost:3000/user/10",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -263,7 +326,7 @@
 					"port": "3000",
 					"path": [
 						"user",
-						"1"
+						"10"
 					]
 				}
 			},
@@ -272,6 +335,16 @@
 		{
 			"name": "Delete User",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AdminToken}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [
 					{
@@ -300,6 +373,119 @@
 					"path": [
 						"user",
 						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth Login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "berear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTY1NjM3OTQyMiwiZXhwIjoxNjU2Mzc5NDgyfQ.jxaZeDV_VKNvuDMekHvPKRDnHWH2AbBesw3wtzLbUG4",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"vini@vinimendes.com.br\",\r\n    \"password\": \"12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AdminToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "berear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTY1NjM3OTQyMiwiZXhwIjoxNjU2Mzc5NDgyfQ.jxaZeDV_VKNvuDMekHvPKRDnHWH2AbBesw3wtzLbUG4",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/auth/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth Refresh",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AdminToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/auth/refresh",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"refresh"
 					]
 				}
 			},

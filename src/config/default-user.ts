@@ -4,7 +4,7 @@ import { DEFAULT_USER_EMAIL, DEFAULT_USER_PASSWORD } from './constants';
 import { User } from 'src/user/entities';
 
 export const setDefaultUser = async (config: ConfigService) => {
-  const userRepository = await getRepository<User>(User);
+  const userRepository = getRepository<User>(User);
 
   const defaultUser = await userRepository
     .createQueryBuilder()

@@ -1,95 +1,53 @@
 import {
+  Body,
   Controller,
+  Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
-  Delete,
-  Body,
-  ParseIntPipe,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { InjectRolesBuilder, RolesBuilder } from 'nest-access-control';
-import { AppResource } from 'src/app.roles';
-import { PostService } from './post.service';
 import { CreatePostDto, EditPostDto } from './dtos';
-import { User, Auth } from 'src/common/decorators';
-import { User as UserEntity } from '../user/entities/user.entity';
+import { PostService } from './post.service';
+import { Auth } from 'src/common/decorators';
 
-@ApiTags('Posts')
+@ApiTags('Post Routes')
 @Controller('post')
 export class PostController {
-  constructor(
-    private readonly postService: PostService,
-    @InjectRolesBuilder()
-    private readonly roleBuilder: RolesBuilder,
-  ) {}
+  constructor(private readonly postService: PostService) {}
 
   @Get()
   async getMany() {
     const data = await this.postService.getMany();
-    return { data };
+
+    return {
+      message: 'Solicitação realizada com sucesso!',
+      data,
+    };
   }
 
   @Get(':id')
-  async getById(@Param('id', ParseIntPipe) id: number) {
-    const data = await this.postService.getById(id);
-    return { data };
+  getOne(@Param('id', ParseIntPipe) id: number) {
+    return this.postService.getOne(id);
   }
 
-  @Auth({
-    resource: AppResource.POST,
-    action: 'create',
-    possession: 'own',
-  })
+  @Auth()
   @Post()
-  async createPost(@Body() dto: CreatePostDto, @User() author: UserEntity) {
-    const data = await this.postService.createOne(dto, author);
-    return { message: 'Post criado com sucesso', data };
+  createOne(@Body() dto: CreatePostDto) {
+    return this.postService.createOne(dto);
   }
 
-  @Auth({
-    resource: AppResource.POST,
-    action: 'update',
-    possession: 'own',
-  })
+  @Auth()
   @Put(':id')
-  async editOne(
-    @Param('id') id: number,
-    @Body() dto: EditPostDto,
-    @User() author: UserEntity,
-  ) {
-    let data;
-
-    if (
-      this.roleBuilder.can(author.roles).updateAny(AppResource.POST).granted
-    ) {
-      // Usuário admin pode editar qualquer post
-      data = await this.postService.editOne(id, dto);
-    } else {
-      // Usuário Author pode editar apenas o seu post
-      data = await this.postService.editOne(id, dto, author);
-    }
-
-    return { message: 'Post edited', data };
+  editOne(@Param('id') id: number, @Body() dto: EditPostDto) {
+    return this.postService.editOne(id, dto);
   }
 
-  @Auth({
-    resource: AppResource.POST,
-    action: 'delete',
-    possession: 'own',
-  })
+  @Auth()
   @Delete(':id')
-  async deleteOne(@Param('id') id: number, @User() author: UserEntity) {
-    let data;
-
-    if (
-      this.roleBuilder.can(author.roles).deleteAny(AppResource.POST).granted
-    ) {
-      data = await this.postService.deleteOne(id);
-    } else {
-      data = await this.postService.deleteOne(id, author);
-    }
-    return { message: 'Post deleted', data };
+  deleteOne(@Param('id') id: number) {
+    return this.postService.deleteOne(id);
   }
 }
