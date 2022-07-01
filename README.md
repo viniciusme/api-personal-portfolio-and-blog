@@ -30,38 +30,38 @@
 
 <table style="border: 1px #a6a6a6 solid">
 	<tbody>
-    <tr style="font-size: 13px">
-      <th>Controller</th>
-      <th>Método</th>
-      <th>Rota</th>
-      <th>Info</th>
-      <th>Public</th>
-      <th>Author</th>
-      <th>Admin</th>
-      <th>Author Possession</th>
-      <th>Admin Possession</th>
+    <tr>
+      <th style="font-size: 12px">Controller</th>
+      <th style="font-size: 12px">Método</th>
+      <th style="font-size: 12px">Rota</th>
+      <th style="font-size: 12px">Info</th>
+      <th style="font-size: 12px">Public</th>
+      <th style="font-size: 12px">Author</th>
+      <th style="font-size: 12px">Admin</th>
+      <th style="font-size: 12px">Author Possession</th>
+      <th style="font-size: 12px">Admin Possession</th>
     </tr>
-		<tr style="font-size: 11px">
-			<td style="border: 1px #a6a6a6 solid">USER</td>
-			<td style="border: 1px #a6a6a6 solid">GET</td>
-			<td style="border: 1px #a6a6a6 solid">/user</td>
-			<td style="border: 1px #a6a6a6 solid">Get many</td>
-			<td style="border: 1px #a6a6a6 solid">YES</td>
-			<td style="border: 1px #a6a6a6 solid">YES</td>
-			<td style="border: 1px #a6a6a6 solid">YES</td>
-			<td style="border: 1px #a6a6a6 solid">ANY</td>
-			<td style="border: 1px #a6a6a6 solid">ANY</td>
+		<tr>
+			<td style="border: 1px #a6a6a6 solid; font-size: 11px">USER</td>
+			<td style="border: 1px #a6a6a6 solid; font-size: 11px">GET</td>
+			<td style="border: 1px #a6a6a6 solid; font-size: 11px">/user</td>
+			<td style="border: 1px #a6a6a6 solid; font-size: 11px">Get many</td>
+			<td style="border: 1px #a6a6a6 solid; font-size: 11px">YES</td>
+			<td style="border: 1px #a6a6a6 solid; font-size: 11px">YES</td>
+			<td style="border: 1px #a6a6a6 solid; font-size: 11px">YES</td>
+			<td style="border: 1px #a6a6a6 solid; font-size: 11px">ANY</td>
+			<td style="border: 1px #a6a6a6 solid; font-size: 11px">ANY</td>
 		</tr>
-		<tr style="font-size: 11px">
-			<td style="border: 1px #a6a6a6 solid"></td>
-			<td style="border: 1px #a6a6a6 solid"></td>
-			<td style="border: 1px #a6a6a6 solid"></td>
-			<td style="border: 1px #a6a6a6 solid"></td>
-			<td style="border: 1px #a6a6a6 solid"></td>
-			<td style="border: 1px #a6a6a6 solid"></td>
-			<td style="border: 1px #a6a6a6 solid"></td>
-			<td style="border: 1px #a6a6a6 solid"></td>
-			<td style="border: 1px #a6a6a6 solid"></td>
+		<tr>
+			<td style="border: 1px #a6a6a6 solid; font-size: 11px"></td>
+			<td style="border: 1px #a6a6a6 solid; font-size: 11px"></td>
+			<td style="border: 1px #a6a6a6 solid; font-size: 11px"></td>
+			<td style="border: 1px #a6a6a6 solid; font-size: 11px"></td>
+			<td style="border: 1px #a6a6a6 solid; font-size: 11px"></td>
+			<td style="border: 1px #a6a6a6 solid; font-size: 11px"></td>
+			<td style="border: 1px #a6a6a6 solid; font-size: 11px"></td>
+			<td style="border: 1px #a6a6a6 solid; font-size: 11px"></td>
+			<td style="border: 1px #a6a6a6 solid; font-size: 11px"></td>
 		</tr>
 	</tbody>
 </table>
