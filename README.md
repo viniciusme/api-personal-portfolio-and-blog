@@ -42,15 +42,15 @@
       <th>Admin Possession</th>
     </tr>
 		<tr>
-			<td style="border: 1px #a6a6a6 solid"></td>
-			<td style="border: 1px #a6a6a6 solid"></td>
-			<td style="border: 1px #a6a6a6 solid"></td>
-			<td style="border: 1px #a6a6a6 solid"></td>
-			<td style="border: 1px #a6a6a6 solid"></td>
-			<td style="border: 1px #a6a6a6 solid"></td>
-			<td style="border: 1px #a6a6a6 solid"></td>
-			<td style="border: 1px #a6a6a6 solid"></td>
-			<td style="border: 1px #a6a6a6 solid"></td>
+			<td style="border: 1px #a6a6a6 solid">USER</td>
+			<td style="border: 1px #a6a6a6 solid">GET</td>
+			<td style="border: 1px #a6a6a6 solid">/user</td>
+			<td style="border: 1px #a6a6a6 solid">Get many</td>
+			<td style="border: 1px #a6a6a6 solid">YES</td>
+			<td style="border: 1px #a6a6a6 solid">YES</td>
+			<td style="border: 1px #a6a6a6 solid">YES</td>
+			<td style="border: 1px #a6a6a6 solid">ANY</td>
+			<td style="border: 1px #a6a6a6 solid">ANY</td>
 		</tr>
 		<tr>
 			<td style="border: 1px #a6a6a6 solid"></td>
