@@ -4,9 +4,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { hash } from 'bcryptjs';
+import { Post } from 'src/post/entities/post.entity';
 
 @Entity('users')
 export class User {
@@ -43,4 +45,7 @@ export class User {
 
     this.password = await hash(this.password, 10);
   }
+
+  @OneToOne((_) => Post, (post) => post.author, { cascade: true })
+  posts: Post;
 }

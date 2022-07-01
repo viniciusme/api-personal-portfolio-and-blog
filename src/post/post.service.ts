@@ -2,7 +2,8 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreatePostDto, EditPostDto } from './dtos';
 import { Repository } from 'typeorm';
-import { Post } from './entities/post.entity';
+import { Post } from './entities';
+import { User } from 'src/user/entities';
 
 @Injectable()
 export class PostService {
@@ -15,30 +16,28 @@ export class PostService {
     return await this.postRepository.find();
   }
 
-  async getOne(id: number) {
-    const post = await this.postRepository.findOne({ where: { id } });
-    // console.log(post);
-
-    if (!post) throw new NotFoundException();
-
+  async getById(id: number, author?: User) {
+    const post = await this.postRepository
+      .findOne({ where: { id } })
+      .then((p) => (!author ? p : !!p && author.id === p.author.id ? p : null));
+    if (!post)
+      throw new NotFoundException('O post não existe ou não é autorizado');
     return post;
   }
 
-  async createOne(dto: CreatePostDto) {
-    const post = this.postRepository.create(dto as any);
+  async createOne(dto: CreatePostDto, author: User) {
+    const post = this.postRepository.create({ ...(dto as any), author });
     return await this.postRepository.save(post);
   }
 
-  async editOne(id: number, dto: EditPostDto) {
-    const post = await this.postRepository.findOne({ where: { id } });
-
-    if (!post) throw new NotFoundException('Post não existe!');
-
+  async editOne(id: number, dto: EditPostDto, author?: User) {
+    const post = await this.getById(id, author);
     const editedPost = Object.assign(post, dto);
     return await this.postRepository.save(editedPost);
   }
 
-  async deleteOne(id: number) {
-    return await this.postRepository.delete(id);
+  async deleteOne(id: number, author?: User) {
+    const post = await this.getById(id, author);
+    return await this.postRepository.remove(post);
   }
 }
