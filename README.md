@@ -30,6 +30,22 @@
 
 <table style="border: 1px #a6a6a6 solid">
 	<tbody>
+    <tr>
+      <th>Company</th>
+      <th>Contact</th>
+      <th>Country</th>
+      <th>Country</th>
+      <th>Country</th>
+      <th>Country</th>
+      <th>Country</th>
+      <th>Country</th>
+      <th>Country</th>
+      <th>Country</th>
+      <th>Country</th>
+      <th>Country</th>
+      <th>Country</th>
+      <th>Country</th>
+    </tr>
 		<tr>
 			<td style="border: 1px #a6a6a6 solid">Cell 1x1</td>
 			<td style="border: 1px #a6a6a6 solid">Cell 2x1</td>
