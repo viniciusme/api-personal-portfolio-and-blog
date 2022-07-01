@@ -31,15 +31,15 @@
 <table style="border: 1px #a6a6a6 solid">
 	<tbody>
     <tr>
-      <th style="font-size: 12px">Controller</th>
-      <th style="font-size: 12px">Método</th>
-      <th style="font-size: 12px">Rota</th>
-      <th style="font-size: 12px">Info</th>
-      <th style="font-size: 12px">Public</th>
-      <th style="font-size: 12px">Author</th>
-      <th style="font-size: 12px">Admin</th>
-      <th style="font-size: 12px">Author Possession</th>
-      <th style="font-size: 12px">Admin Possession</th>
+      <th style="font-size: 11px;">Controller</th>
+      <th style="font-size: 12px;">Método</th>
+      <th style="font-size: 12px;">Rota</th>
+      <th style="font-size: 12px;">Info</th>
+      <th style="font-size: 12px;">Public</th>
+      <th style="font-size: 12px;">Author</th>
+      <th style="font-size: 12px;">Admin</th>
+      <th style="font-size: 12px;">Author Possession</th>
+      <th style="font-size: 12px;">Admin Possession</th>
     </tr>
 		<tr>
 			<td style="border: 1px #a6a6a6 solid; font-size: 11px">USER</td>
