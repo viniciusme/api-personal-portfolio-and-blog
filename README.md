@@ -45,7 +45,7 @@
 			<td style="border: 1px #a6a6a6 solid; font-size: 11px">USER</td>
 			<td style="border: 1px #a6a6a6 solid; font-size: 11px">GET</td>
 			<td style="border: 1px #a6a6a6 solid; font-size: 11px">/user</td>
-			<td style="border: 1px #a6a6a6 solid; font-size: 11px">Get many</td>
+			<td style="border: 1px #a6a6a6 solid; font-size: 11px; font-size: 11px">Get many</td>
 			<td style="border: 1px #a6a6a6 solid; font-size: 11px">YES</td>
 			<td style="border: 1px #a6a6a6 solid; font-size: 11px">YES</td>
 			<td style="border: 1px #a6a6a6 solid; font-size: 11px">YES</td>
